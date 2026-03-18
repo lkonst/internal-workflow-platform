@@ -1,0 +1,6 @@
+services:
+  backend:
+    build:
+      context: ./backend
+  container_name: workflow-backend
+    

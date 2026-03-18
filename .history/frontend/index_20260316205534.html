@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workflow Tasks</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div id="app" class="container">
+    <header class="page-header">
+        <h1>Internal Workflow Management</h1>
+        <p>Task creation, filtering, and workflow tracking</p>
+    </header>
+
+    <section class="card">
+        <h2>Create Task</h2>
+        <form @submit.prevent="createTask" class="task-form">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input id="title" v-model="form.title" type="text" required maxlength="255" />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" v-model="form.description" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status" v-model="form.status">
+            <option value="OPEN">Open</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="COMPLETED">Completed</option>
+        </select>
+        </div>
+
+        <button type="submit">Create Task</button>
+    </form>
+    </section>
+
+    <section class="card">
+        <div class="section-header">
+        <h2>Tasks</h2>
+        <div class="filter-group">
+            <label for="status-filter">Filter by status</label>
+            <select id="status-filter" v-model="selectedStatus" @change="fetchTasks">
+            <option value="">All</option>
+            <option value="OPEN">Open</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="COMPLETED">Completed</option>
+        </select>
+        </div>
+    </div>
+
+    <p v-if="loading">Loading tasks...</p>
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+    <div v-if="!loading && tasks.length === 0" class="empty-state">
+        No tasks found.
+      </div>
+
+      <div v-else class="task-list">
+        <article v-for="task in tasks" :key="task.id" class="task-item">
+          <div class="task-item-top">
+            <h3>{{ task.title }}</h3>
+            <span class="badge" :class="badgeClass(task.status)">
+              {{ prettyStatus(task.status) }}
+            </span>
+          </div>
+
+          <p class="task-description">
+            {{ task.description || 'No description provided.' }}
+          </p>
+
+          <div class="task-meta">
+            <span>Created: {{ formatDate(task.created_at) }}</span>
+            <span>Updated: {{ formatDate(task.updated_at) }}</span>
+          </div>
+
+          <div class="task-actions">
+            <a :href="`task-detail.html?id=${task.id}`">View Details</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

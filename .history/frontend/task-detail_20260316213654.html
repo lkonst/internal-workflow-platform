@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Details</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="detailApp" class="container">
+    <header class="page-header">
+      <a href="index.html" class="back-link">← Back to Tasks</a>
+      <h1>Task Details</h1>
+      <p>View task information and update workflow status</p>
+    </header>
+
+    <section class="card">
+      <p v-if="loading">Loading task...</p>
+      <p v-else-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+      <div v-else-if="task">
+        <div class="task-item-top">
+          <h2>{{ task.title }}</h2>
+          <span class="badge" :class="badgeClass(task.status)">
+            {{ prettyStatus(task.status) }}
+          </span>
+        </div>
+
+        <p class="task-description">
+          {{ task.description || 'No description provided.' }}
+        </p>
+
+        <div class="task-meta detail-meta">
+          <span><strong>ID:</strong> {{ task.id }}</span>
+          <span><strong>Created:</strong> {{ formatDate(task.created_at) }}</span>
+          <span><strong>Updated:</strong> {{ formatDate(task.updated_at) }}</span>
+        </div>
+      </div>
+    </section>
+
+    <section v-if="task" class="card">
+      <h2>Update Status</h2>
+
+      <div class="status-update-box">
+        <div class="form-group">
+          <label for="new-status">New Status</label>
+          <select id="new-status" v-model="selectedStatus">
+            <option
+              v-for="status in availableStatuses"
+              :key="status"
+              :value="status"
+            >
+              {{ prettyStatus(status) }}
+            </option>
+          </select>
+        </div>
+
+        <button @click="updateStatus" :disabled="saving">
+          {{ saving ? 'Saving...' : 'Update Status' }}
+        </button>
+      </div>
+
+      <p class="helper-text">
+        Allowed transitions follow the workflow rules of the platform.
+      </p>
+      <p v-if="successMessage" class="success-message">{{ successMessage }}</p>
+      <p v-if="updateErrorMessage" class="error-message">{{ updateErrorMessage }}</p>
+    </section>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="task-detail.js"></script>
+</body>
+</html>

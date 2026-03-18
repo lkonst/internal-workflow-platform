@@ -1,0 +1,12 @@
+services:
+  backend:
+    build:
+      context: ./backend
+  container_name: workflow-backend
+  ports:
+    - "8000:8000"
+  volumes:
+    - ./backend:/app
+  restart: unless-stopped
+
+  
