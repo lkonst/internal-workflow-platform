@@ -1,4 +1,0 @@
-internal_platform/
-__pycache__/
-*.pyc
-db.sqlite3
