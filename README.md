@@ -64,7 +64,7 @@ Workflow validation is enforced on the backend, not only in the UI.
 
 ### Frontend
 
-The frontend is implemented as a lightweight Vue-based interface using the Vue 3.
+The frontend is implemented as a lightweight interface using the **Vue 3**.
 
 Views included:
 
@@ -217,8 +217,6 @@ The tests cover:
 
 ### Trade-offs
 
-This implementation intentionally favors clarity and maintainability over feature breadth.
-
 Current trade-offs include:
 
 - SQLite instead of PostgreSQL
@@ -227,11 +225,9 @@ Current trade-offs include:
 
 - no background jobs
 
-These choices helped keep the solution small, understandable, and aligned with the assignment scope.
-
 ### Potential Improvements
 
-Given more time, the following would be the next improvements:
+Next improvements:
 
 - add authentication and authorization
 
@@ -249,12 +245,12 @@ This project was designed to be small but production-oriented, with emphasis on:
 
 - backend correctness
 
-* clear workflow validation
+- clear workflow validation
 
-* simple but usable frontend experience
+- simple but usable frontend experience
 
-* clean project structure
+- clean project structure
 
-* straightforward local setup
+- straightforward local setup
 
-* readable documentation
+- readable documentation
