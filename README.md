@@ -14,7 +14,7 @@ The platform supports:
 The application is implemented as two separated services:
 
 - **Backend:** Django + Django REST Framework + SQLite
-- **Frontend:** Vue 3 (CDN-based) + HTML/CSS/JavaScript, served by Nginx
+- **Frontend:** Vue 3 + HTML/CSS/JavaScript, served by Nginx
 
 ## Architecture
 
@@ -64,7 +64,7 @@ Workflow validation is enforced on the backend, not only in the UI.
 
 ### Frontend
 
-The frontend is implemented as a lightweight Vue-based interface using the Vue 3 CDN.
+The frontend is implemented as a lightweight Vue-based interface using the Vue 3.
 
 Views included:
 
@@ -83,7 +83,7 @@ The application is containerized using Docker and separated into two services:
 - `backend`
 - `frontend`
 
-The frontend is served through **Nginx**, while the backend runs Django.
+The frontend is served through Nginx, while the backend runs Django.
 
 ## Project Structure
 
