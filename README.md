@@ -241,18 +241,18 @@ Given more time, the following would be the next improvements:
 
 - replace SQLite with PostgreSQL
 
-Notes
+#### Notes
 
 This project was designed to be small but production-oriented, with emphasis on:
 
-backend correctness
+- backend correctness
 
-- clear workflow validation
+* clear workflow validation
 
-- simple but usable frontend experience
+* simple but usable frontend experience
 
-- clean project structure
+* clean project structure
 
-- straightforward local setup
+* straightforward local setup
 
-- readable documentation
+* readable documentation
