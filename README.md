@@ -87,6 +87,7 @@ The frontend is served through **Nginx**, while the backend runs Django.
 
 ## Project Structure
 
+```text
 internal-workflow-platform/
 ├── backend/
 │ ├── config/
@@ -104,6 +105,7 @@ internal-workflow-platform/
 │ └── nginx.conf
 ├── docker-compose.yml
 └── README.md
+```
 
 ## **API Overview**
 
