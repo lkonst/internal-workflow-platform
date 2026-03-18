@@ -185,7 +185,8 @@ docker compose down
 
 To create a Django admin user:
 
-```bash cd backend
+```bash
+cd backend
 python manage.py createsuperuser
 ```
 
@@ -199,7 +200,8 @@ Basic backend API tests are included.
 
 To run tests:
 
-```bash cd backend
+```bash
+cd backend
 python manage.py test
 ```
 
