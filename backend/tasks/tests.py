@@ -1,4 +1,3 @@
-from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -20,6 +19,7 @@ class TaskAPITestCase(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data["results"]), 1)
+        self.assertEqual(response.data["count"], 1)
 
     def test_create_task(self):
         url = "/api/tasks/"
@@ -34,7 +34,7 @@ class TaskAPITestCase(APITestCase):
         self.assertEqual(Task.objects.count(), 2)
 
     def test_valid_status_transition(self):
-        url = f"/api/tasks/{self.task.id}/"
+        url = f"/api/tasks/{self.task.pk}/"
         payload = {
             "status": TaskStatus.IN_PROGRESS,
         }
@@ -45,7 +45,7 @@ class TaskAPITestCase(APITestCase):
         self.assertEqual(self.task.status, TaskStatus.IN_PROGRESS)
 
     def test_invalid_status_transition(self):
-        url = f"/api/tasks/{self.task.id}/"
+        url = f"/api/tasks/{self.task.pk}/"
         payload = {
             "status": TaskStatus.COMPLETED,
         }
